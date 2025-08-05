@@ -1,0 +1,144 @@
+{
+  "appInfo": {
+    "id": "0442beaa-afd6-4434-bc56-8dadf65db0aa",
+    "name": "Experience Capture",
+    "description": "Updates Experience directly from email inquiries",
+    "buttonLabel": "Experience Capture",
+    "version": "1.0.0.0",
+    "provider": "HSO"
+  },
+  "deployment": {
+    "webServerUrl": "https://lemon-rock-0d0849e10.1.azurestaticapps.net",
+    "environment": "production",
+    "comments": "Update webServerUrl to match your actual web server where add-in files will be hosted"
+  },
+  "canvasApp": {
+    "url": "https://apps.powerapps.com/play/e/4b3631c7-c916-4ebc-935c-bfa92317ad03/a/2876bcfe-ebda-4542-ac05-62ee47efa210",
+    "height": "700px"
+  },
+  "emailContext": {
+    "fields": [
+      "subject",
+      "sender",
+      "recipients",
+      "body"
+    ],
+    "parameterFormat": "urlParams"
+  },
+  "activationRules": {
+    "itemTypes": [
+      "Message"
+    ],
+    "formTypes": [
+      "Read"
+    ],
+    "customRules": []
+  },
+  "bodyProcessing": {
+    "enabled": true,
+    "extractionRules": [
+      {
+        "name": "recordId",
+        "description": "Extract Dataverse record ID from URL",
+        "method": "regex",
+        "pattern": "[&](?:amp;)id=([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12})",
+        "group": 1,
+        "required": true
+      },
+      {
+        "name": "entityType",
+        "description": "Extract entity type from URL",
+        "method": "regex",
+        "pattern": "[&](?:amp;)etn=([a-zA-Z_]+)",
+        "group": 1,
+        "required": false,
+        "defaultValue": "unknown"
+      },
+      {
+        "name": "appId",
+        "description": "Extract app ID from URL",
+        "method": "regex",
+        "pattern": "[&](?:amp;)appid=([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12})",
+        "group": 1,
+        "required": false
+      },
+      {
+        "name": "dataverseUrl",
+        "description": "Extract full Dataverse URL",
+        "method": "regex",
+        "pattern": "(https://[a-zA-Z0-9.-]+\\.crm[0-9]*\\.dynamics\\.com/[^\\s]+)",
+        "group": 1,
+        "required": false
+      },
+      {
+        "name": "orgName",
+        "description": "Extract organization name from URL",
+        "method": "regex",
+        "pattern": "https://([a-zA-Z0-9.-]+)\\.crm[0-9]*\\.dynamics\\.com",
+        "group": 1,
+        "required": false
+      },
+      {
+        "name": "hasDataverseLink",
+        "description": "Check if email contains Dataverse link",
+        "method": "keywords",
+        "keywords": {
+          "true": [
+            "crm.dynamics.com",
+            "dynamics.com/main.aspx"
+          ],
+          "false": []
+        },
+        "defaultValue": "false"
+      },
+      {
+        "name": "actionType",
+        "description": "Determine what action is mentioned with the record",
+        "method": "keywords",
+        "keywords": {
+          "review": [
+            "review",
+            "check",
+            "look at",
+            "examine"
+          ],
+          "update": [
+            "update",
+            "modify",
+            "change",
+            "edit"
+          ],
+          "approve": [
+            "approve",
+            "approval",
+            "sign off"
+          ],
+          "follow_up": [
+            "follow up",
+            "follow-up",
+            "contact",
+            "call"
+          ],
+          "urgent": [
+            "urgent",
+            "asap",
+            "immediately",
+            "critical"
+          ]
+        },
+        "defaultValue": "review"
+      }
+    ],
+    "textCleaning": {
+      "removeHtmlTags": true,
+      "removeExtraWhitespace": true,
+      "removeEmailHeaders": false,
+      "removeSignatures": false
+    }
+  },
+  "ui": {
+    "showDebugInfo": false,
+    "loadingMessage": "Loading Experience Capture...",
+    "errorRetryEnabled": true
+  }
+}

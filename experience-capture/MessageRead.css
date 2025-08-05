@@ -1,0 +1,366 @@
+﻿/* Page-specific styling */
+body {
+    background-color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.padding {
+    padding: 15px;
+}
+
+/* === HEADER ENHANCEMENTS === */
+#content-header {
+    padding: 8px 16px;
+    min-height: 50px;
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.app-icon {
+    font-size: 18px;
+    color: #0078d4;
+}
+
+.app-info {
+    flex: 1;
+}
+
+#app-title {
+    margin: 0 0 2px 0;
+    font-size: 14px;
+}
+
+#app-description {
+    margin: 0;
+    font-size: 11px;
+}
+
+/* === CONTENT MAIN === */
+#content-main {
+    height: calc(100vh - 50px);
+    overflow: hidden;
+}
+
+/* === CANVAS APP STYLES === */
+.canvas-wrapper {
+    background-color: #ffffff;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+}
+
+.canvas-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 6px 12px;
+    min-height: 40px;
+    flex-shrink: 0;
+}
+
+    .canvas-controls button {
+        margin-right: 8px;
+    }
+
+#canvas-status {
+    margin-left: auto;
+    font-size: 11px;
+}
+
+.canvas-frame-container {
+    position: relative;
+    background-color: #ffffff;
+    flex: 1;
+    overflow: hidden;
+}
+
+#canvas-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.iframe-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+/* === STATE CONTAINERS === */
+.loading-state,
+.error-state,
+.debug-state {
+    text-align: center;
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.error-state {
+    background-color: #fef7f7;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.debug-state {
+    text-align: left;
+    background-color: #f8f9fa;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+/* === LOADING STYLES === */
+.loading-state h3 {
+    margin: 20px 0 8px 0;
+}
+
+.loading-state p {
+    margin: 0 0 20px 0;
+}
+
+.loading-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+    text-align: left;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loading-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #605e5c;
+}
+
+    .loading-step i {
+        color: #0078d4;
+    }
+
+/* === ERROR STYLES === */
+.error-icon {
+    margin-bottom: 16px;
+}
+
+.error-state h3 {
+    margin: 0 0 8px 0;
+}
+
+.error-state p {
+    margin: 0 0 20px 0;
+}
+
+.error-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* === DEBUG STYLES === */
+.debug-section {
+    margin-bottom: 20px;
+}
+
+    .debug-section h4 {
+        margin: 0 0 8px 0;
+        color: #323130;
+    }
+
+.debug-content {
+    background-color: #ffffff;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    padding: 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    max-height: 150px;
+    overflow-y: auto;
+    color: #323130;
+    line-height: 1.4;
+}
+
+.debug-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* === SPINNER OVERRIDE === */
+.ms-Spinner-circle {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #0078d4;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+
+.ms-Spinner--large .ms-Spinner-circle {
+    width: 60px;
+    height: 60px;
+    border-width: 4px;
+}
+
+.ms-Spinner-label {
+    font-size: 12px;
+    color: #605e5c;
+    margin-top: 8px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* === BUTTON STYLES === */
+.ms-Button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 32px;
+    padding: 0 16px;
+    border: 1px solid #8a8886;
+    border-radius: 2px;
+    background-color: #ffffff;
+    color: #323130;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    transition: all 0.1s ease;
+}
+
+    .ms-Button:hover {
+        background-color: #f3f2f1;
+        border-color: #323130;
+    }
+
+.ms-Button--primary {
+    background-color: #0078d4;
+    border-color: #0078d4;
+    color: #ffffff;
+}
+
+    .ms-Button--primary:hover {
+        background-color: #106ebe;
+        border-color: #106ebe;
+    }
+
+.ms-Button--small {
+    min-height: 28px;
+    padding: 0 12px;
+    font-size: 12px;
+}
+
+.ms-Button-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 600px) {
+    .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .canvas-controls {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .error-actions,
+    .debug-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #canvas-iframe {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (max-height: 500px) {
+    #content-main {
+        height: calc(100vh - 80px);
+    }
+
+    #canvas-iframe {
+        height: 400px;
+    }
+
+    .loading-state,
+    .error-state {
+        margin: 20px auto;
+    }
+}
+
+/* === UTILITY CLASSES === */
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+/* === ACCESSIBILITY === */
+@media (prefers-reduced-motion: reduce) {
+    .ms-Spinner-circle {
+        animation: none;
+    }
+
+    * {
+        transition: none !important;
+    }
+}
+
+.ms-Button:focus {
+    outline: 2px solid #0078d4;
+    outline-offset: 2px;
+}
